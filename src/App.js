@@ -31,7 +31,7 @@ function App() {
   };
 
   return (
-    <div className='App'>
+    <div className={`App ${playlistStatus ? 'playlist-active': ''}`}>
       <Nav
         playlistStatus={playlistStatus}
         setPlaylistStatus={setPlaylistStatus}

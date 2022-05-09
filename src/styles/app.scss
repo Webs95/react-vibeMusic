@@ -15,6 +15,13 @@ h3, h4 {
     color: rgb(65, 65, 65)
 }
 
+.App {
+    transition: all 0.5s ease;
+}
+
+.playlist-active {
+    margin-left: 17%;
+}
 // #root {
 //     background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
 // }
