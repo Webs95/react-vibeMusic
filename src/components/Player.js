@@ -6,7 +6,6 @@ import {
   faAngleRight,
   faPause,
 } from '@fortawesome/free-solid-svg-icons';
-import { playAudio } from '../components/util';
 
 const Player = ({
   audioRef,
@@ -57,20 +56,20 @@ const Player = ({
     setSongTime({ ...songTime, currentTime: e.target.value });
   };
 
-  const skipTrackHandler = (direction) => {
+  const skipTrackHandler = async (direction) => {
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     if (direction === 'skip-forward') {
-      setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+      await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
     }
     if (direction === 'skip-back') {
       if ((currentIndex - 1) % songs.length === -1) {
-        setCurrentSong(songs[songs.length - 1]);
-        playAudio(isPlaying, audioRef);
+        await setCurrentSong(songs[songs.length - 1]);
+        if (isPlaying) audioRef.current.play();
         return;
       }
-      setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+      await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
     }
-    playAudio(isPlaying, audioRef);
+    if (isPlaying) audioRef.current.play();
   };
 
   return (
@@ -78,14 +77,14 @@ const Player = ({
       <div className='time-control'>
         <p>{getTime(songTime.currentTime)}</p>
         {/* <div className='track'> */}
-          <input
-            type='range'
-            min={0}
-            max={songTime.duration || 0}
-            value={songTime.currentTime}
-            onChange={dragHandler}
-          />
-          {/* <div className="animate-track"></div> */}
+        <input
+          type='range'
+          min={0}
+          max={songTime.duration || 0}
+          value={songTime.currentTime}
+          onChange={dragHandler}
+        />
+        {/* <div className="animate-track"></div> */}
         {/* </div> */}
         <p>{songTime.duration ? getTime(songTime.duration) : '0:00'}</p>
       </div>
