@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-vibeMusic/static/css/main.e887711a.css",
+    "main.js": "/react-vibeMusic/static/js/main.c1618590.js",
+    "static/js/787.34cb1c79.chunk.js": "/react-vibeMusic/static/js/787.34cb1c79.chunk.js",
+    "index.html": "/react-vibeMusic/index.html",
+    "main.e887711a.css.map": "/react-vibeMusic/static/css/main.e887711a.css.map",
+    "main.c1618590.js.map": "/react-vibeMusic/static/js/main.c1618590.js.map",
+    "787.34cb1c79.chunk.js.map": "/react-vibeMusic/static/js/787.34cb1c79.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e887711a.css",
+    "static/js/main.c1618590.js"
+  ]
+}
