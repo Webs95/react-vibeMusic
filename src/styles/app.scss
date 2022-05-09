@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;   
+}
+
+h3, h4 {
+    font-weight: 400;
+    color: rgb(65, 65, 65)
+}
+
+// #root {
+//     background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+// }
+
+@import './player';
+@import './song';
+@import './playlist';
+@import './nav';

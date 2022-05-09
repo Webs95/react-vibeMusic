@@ -1,0 +1,23 @@
+nav {
+    min-height: 10vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    button{
+        display: flex;
+        align-items: center;
+        font-family: 'Nunito', sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        background: transparent;
+        cursor: pointer;
+        border: 2px solid rgba(71, 144, 212, 0.644);
+        border-radius: 5px;
+        padding: 0.35rem;
+        transition: all 0.3s ease;
+        &:hover {
+            background: rgba(71, 144, 212, 0.644);
+        }
+    }
+}

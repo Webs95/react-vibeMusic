@@ -1,23 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useRef } from 'react';
+import Player from './components/Player'; // Components
+import Song from './components/Song';
+import Playlist from './components/Playlist';
+import Nav from './components/Nav';
+import './styles/app.scss'; // Styles
+import data from './data';
 
 function App() {
+  //useState
+  const audioRef = useRef(null);
+  const [songs, setSongs] = useState(data());
+  const [currentSong, setCurrentSong] = useState(songs[0]);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [songTime, setSongTime] = useState({
+    currentTime: null,
+    duration: null,
+  });
+  const [playlistStatus, setPlaylistStatus] = useState(false);
+
+  const timeUpdateHandler = (e) => {
+    const current = e.target.currentTime;
+    const duration = e.target.duration;
+    setSongTime({ ...songTime, currentTime: current, duration: duration });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Nav playlistStatus={playlistStatus} setPlaylistStatus={setPlaylistStatus} />
+      <Song currentSong={currentSong} />
+      <Player
+        audioRef={audioRef}
+        setIsPlaying={setIsPlaying}
+        isPlaying={isPlaying}
+        currentSong={currentSong}
+        setSongTime={setSongTime}
+        songTime={songTime}
+        songs={songs}
+        setCurrentSong={setCurrentSong}
+        setSongs={setSongs}
+      />
+      <Playlist
+        audioRef={audioRef}
+        songs={songs}
+        setCurrentSong={setCurrentSong}
+        isPlaying={isPlaying}
+        setSongs={setSongs}
+        playlistStatus={playlistStatus}
+      />
+      <audio
+        onTimeUpdate={timeUpdateHandler}
+        onLoadedMetadata={timeUpdateHandler}
+        ref={audioRef}
+        src={currentSong.audio}
+      ></audio>
     </div>
   );
 }
